@@ -1,0 +1,154 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+The point of this testing is to make sure filing issues works as intended and is visible.
+
+# TODO: Write Precondition and Postcondition, Tags 
+
+Pre Condition	Account, Open Browser, logged into gitlab.com and an available project.
+Post Condition	Issues created, read, edited, and deleted
+Tags Issues, Bug reports, CRUD
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Issue creation field variables, Updated name of the issue
+
+MainProjectsURL = https://gitlab.com/dashboard/projects
+Type1 = Incident
+Type2 = Issue
+Type3 = Task
+Issue1Title = Problem 1
+Issue2Title = Problem 2
+Description = Houston we have a problem.
+AltTitle = problem X
+InvalidTitle = äö~
+Comment = Hello world.
+Time = 1h 59m
+Date = 2001-09-11
+empty =
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create an issue
+		Navigate to MainProjectsURL
+		Click on the project in the list of projects and go to project page
+		Click on "issues" button in the sidebar of the project
+		Click on "New issue" button to create a new issue
+		Select Type Type2
+		Input Title Issue1Title
+		Input description Description
+		Click on "Create issue" button
+		Validate that the issue is created
+
+	Create a type1/incident issue
+		Navigate to MainProjectsURL
+		Click on the project in the list of projects and go to project page
+		Click on "issues" button in the sidebar of the project
+		Click on "New issue" button to create a new issue
+		Select Type Type1
+		Input Title Issue2Title
+		Input description Description
+		Click on "Create issue" button
+		Validate that the issue is created
+
+	Create a duplicate issue
+		Navigate to MainProjectsURL
+		Click on the project in the list of projects and go to project page
+		Click on "issues" button in the sidebar of the project
+		Click on "New issue" button to create a new issue
+		Select Type Type2
+		Input Title Issue1Title
+		Input description Description
+		Click on "Create issue" button
+		Validate that the issue is created
+	
+	Update issue name
+		Precondition available issue
+		Navigate to MainProjectsURL
+		Click on the project in the list of projects and go to project page
+		Click on "issues" button in the sidebar of the project
+		Click on an available issue
+		Click on "Edit" button
+		Input Title AltTitle
+		Click on "Save changes" button
+		Validate that the issue name has changed
+
+	Write a comment on an issue
+		Precondition available issue
+		Navigate to MainProjectsURL
+		Click on the project in the list of projects and go to project page
+		Click on "issues" button in the sidebar of the project
+		Click on an available issue
+		Input comment field Comment
+		Click on "Comment" button
+		Validate that the comment is created and visible
+
+	Assign issue to yourself
+		Precondition available issue
+		Navigate to MainProjectsURL
+		Click on the project in the list of projects and go to project page
+		Click on "issues" button in the sidebar of the project
+		Click on an available issue
+		Click on "edit" button next to "Assignee"
+		Select yourself
+		Validate that the issue is assigned to yourself
+
+	link an issue to another issue
+		Precondition 2 available issues
+		Navigate to MainProjectsURL
+		Click on the project in the list of projects and go to project page
+		Click on "issues" button in the sidebar of the project
+		Click on an available issue
+		Click on "Add" button in "Linked items"
+		Select an available issue
+		Click on blue "Add" button
+		Validate that the issues are linked together
+
+	Update issue type
+		Precondition available issue
+		Navigate to MainProjectsURL
+		Click on the project in the list of projects and go to project page
+		Click on "issues" button in the sidebar of the project
+		Click on an available issue
+		Click on three dots button next to "Edit"
+		Click on "Change type"
+		Select Type Type3
+		Click on "Change type" button
+		Validate that the issue type has changed
+
+	Update Time tracking of issue
+		Precondition available issue
+		Navigate to MainProjectsURL
+		Click on the project in the list of projects and go to project page
+		Click on "issues" button in the sidebar of the project
+		Click on an available issue
+		Click on "+" button next to "Time tracking"
+		Input Time spent Time
+		Input Spent at Date
+		Click on "Save" button
+		Validate that the time tracking is updated
+
+	Delete a duplicate issue
+		Precondition available duplicate issue
+		Navigate to MainProjectsURL
+		Click on the project in the list of projects and go to project page
+		Click on "issues" button in the sidebar of the project
+		Click on an available duplicate issue
+		Click on the three dots next to "Edit"
+		Select Delete issue
+		Click on "delete issue" button to confirm
+		Validate that the issue is deleted

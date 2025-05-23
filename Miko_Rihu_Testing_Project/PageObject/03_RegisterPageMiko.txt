@@ -1,0 +1,136 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Documentation e.g. User Registration Test scenario with verification, valid and invalid credentials.
+
+The point of this testing is to make sure that the registration page works as intended.
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	Open Browser
+Post Condition	Account created
+Tags registering, account creation
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Registration field variables
+
+LoginUrl = https://gitlab.com/users/sign_up
+First_name= John
+Last_name= Doe
+UserName= Johndoelol
+Email= john.doe@example.com
+Password= poiuytrewq1
+Invalid_First_Name= 😀
+Invalid_Last_Name= 😀
+Invalid_Username= ÅÅ
+invalid_Email= johndoeemail
+Invalid_Password= John1
+Empty= 
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps (Think about possible test cases)
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Register user with valid username and password 
+		Navigate to register/sign up page
+		input first name First_name
+		input last name Last_name
+		input username UserName
+		input email address Email
+		input password Password
+		submit register Form
+		account should be created and verification email should be received
+		website should forward to email verificaton code input screen
+
+	Register user with valid google account
+		Pre condition browser is logged in to a Google account
+		Navigate to register/sign up page
+		click on continue with Google
+		Choose google account
+		submit register Form
+		account should be created and verification email should be received
+		website should forward to email verificaton code input screen
+
+# Negative Test examples keywords are below write test process steps for each below test case 
+
+	Register user with already taken username,
+		Navigate to register/sign up page
+		input first name First_name
+		input last name Last_name
+		input username UserName
+		input email address Email
+		input password Password
+		submit register Form
+		account should NOT be created and user should receive error message
+
+	Register user with invalid first name,
+		Navigate to register/sign up page
+		input first name Invalid_First_Name
+		input last name Last_name
+		input username UserName
+		input email address Email
+		input password Password
+		submit register Form
+		account should NOT be created and user should receive error message		
+
+	Register user with invalid last name,
+		Navigate to register/sign up page
+		input first name First_name
+		input last name Invalid_Last_Name
+		input username UserName
+		input email address Email
+		input password Password
+		submit register Form
+		account should NOT be created and user should receive error message
+
+	Register user with invalid username, 
+		Navigate to register/sign up page
+		input first name First_name
+		input last name Last_name
+		input username Invalid_Username
+		input email address Email
+		input password Password
+		submit register Form
+		account should NOT be created and user should receive error message
+
+	Register user with invalid e-mail, 
+		Navigate to register/sign up page
+		input first name First_name
+		input last name Last_name
+		input username UserName
+		input email address invalid_Email
+		input password Password
+		submit register Form
+		account should NOT be created and user should receive error message
+
+	Register user with invalid password, 
+		Navigate to register/sign up page
+		input first name First_name
+		input last name Last_name
+		input username UserName
+		input email address Email
+		input password Invalid_Password
+		submit register Form
+		account should NOT be created and user should receive error message
+
+	Register user with all fields empty
+		Navigate to register/sign up page
+		input first name Empty
+		input last name Empty
+		input username Empty
+		input email address Empty
+		input password Empty
+		submit register Form
+		account should NOT be created and user should receive error message

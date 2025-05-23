@@ -1,0 +1,202 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+The point of this testing is to make sure creating, reading, updating and deleting new projects works as intended.
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	Account, Open Browser, and logged into gitlab.com 
+Post Condition	Project created in "Projects" tab
+Tags creating project, project creation, project management, CRUD
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Project creation field variables
+
+MainProjectsURL = https://gitlab.com/dashboard/projects
+MorgonsProjectURL = https://gitlab.com/morgons-group/Morgons
+ProjectName = Morgons
+AltProjectName = Morgons1
+InvalidProjectName = ÄÅ~
+GroupProjectURL = https://gitlab.com/morgons-group
+UserProjectURL = https://gitlab.com/morgons
+ProjectSlug = Morgons
+AltProjectSlug = Morgons1
+InvalidProjectSlug = ÄÅ~
+ProjectDescripton = Hello world...
+Empty = 
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create a blank project
+		Navigate to MainProjectsURL
+		Press "New Project" button
+		Press "Create blank project" option
+		Input Project name ProjectName
+		Input Project URL GroupProjectURL
+		Input Project slug ProjectSlug
+		Press "Create Project" button
+		Valide that alert is showing Project "ProjectName" was successfully created.
+		Validate that the project was successfully created
+
+	Update a blank project description
+		Pre condition an available blank project
+		Navigate to MainProjectsURL
+		Press the three dots button on a project in the list of projects
+		select edit
+		Input Project description ProjectDescripton
+		Press "Save changes" button
+		Valide that alert is showing Project 'ProjectName' was successfully updated.
+		Validate that the project was successfully created
+
+	Update a blank project visibility
+		Pre condition a blank project created using UserProjectURL
+		Navigate to MainProjectsURL
+		press "Personal"
+		Press the three dots button on a project in the list of projects
+		select edit
+		select visibility, pproject features, permissions
+		set Project visibility to Public
+		Press "Save changes" button
+		Valide that alert is showing Project 'ProjectName' was successfully updated.
+		Validate that the project was successfully created
+
+	Delete a blank project
+		Pre condition an available blank project
+		Navigate to MainProjectsURL
+		Press the three dots button on a project in the list of projects
+		select Delete
+		Input the text shown in the "enter following to confirm"
+		press "yes, delete project" button
+		Valide that alert is showing Project "GroupProjectURL / ProjectName" will be deleted on Year-Month-Date
+		Validate that the project was successfully deleted
+
+	Create a template project
+		Navigate to MainProjectsURL
+		Press "New Project" button
+		Press "Create from template" option
+		Press "Use template" button on "Sample GitLab Project"
+		Input Project name AltProjectName
+		Input Project URL UserProjectURL
+		Input Project slug AltProjectSlug
+		Press "Create Project" button
+		Valide that alert is showing "The project was successfully imported."
+		Validate that the project was successfully created
+
+	Update a template project description
+		Pre condition an available template project
+		Navigate to MainProjectsURL
+		Press the three dots button on a project in the list of projects
+		select edit
+		Input Project description ProjectDescripton
+		Press "Save changes" button
+		Valide that alert is showing Project 'ProjectName' was successfully updated.
+		Validate that the project was successfully created
+
+	Update a template project visibility
+		Pre condition a template project created using UserProjectURL
+		Navigate to MainProjectsURL
+		press "Personal"
+		Press the three dots button on a project in the list of projects
+		select edit
+		select visibility, pproject features, permissions
+		set Project visibility to Public
+		Press "Save changes" button
+		Valide that alert is showing Project 'ProjectName' was successfully updated.
+		Validate that the project was successfully created
+
+	Delete a template project
+		Pre condition an available template project
+		Navigate to MainProjectsURL
+		Press the three dots button on a project in the list of projects
+		select Delete
+		Input the text shown in the "enter following to confirm"
+		press "yes, delete project" button
+		Valide that alert is showing Project "GroupProjectURL / ProjectName" will be deleted on Year-Month-Date
+		Validate that the project was successfully deleted
+
+
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Create a blank project with an already used project name
+		Navigate to MainProjectsURL
+		Press "New Project" button
+		Press "Create blank project" option
+		Input Project name ProjectName
+		Input Project URL GroupProjectURL
+		Input Project slug ProjectSlug
+		Press "Create Project" button
+		Validate that the project is NOT created
+		Validate that an error message is issued when attempting to create the duplicate project
+
+	Create a blank project with an already used project Url
+		Navigate to MainProjectsURL
+		Press "New Project" button
+		Press "Create blank project" option
+		Input Project name AltProjectName
+		Input Project URL GroupProjectURL
+		Input Project slug ProjectASlug
+		Press "Create Project" button
+		Validate that the project is NOT created
+		Validate that an error message is issued when attempting to create the duplicate project
+
+
+	Create a blank project with an invalid project slug
+		Navigate to MainProjectsURL
+		Press "New Project" button
+		Press "Create blank project" option
+		Input Project name AltProjectName
+		Input Project URL GroupProjectURL
+		Input Project slug InvalidProjectSlug
+		Press "Create Project" button
+		Validate that the project is NOT created
+		Validate that an error message is issued when attempting to create the duplicate project
+
+	Create a blank project with an invalid project name
+		Navigate to MainProjectsURL
+		Press "New Project" button
+		Press "Create blank project" option
+		Input Project name InvalidProjectName
+		Input Project URL GroupProjectURL
+		Input Project slug AltProjectSlug
+		Press "Create Project" button
+		Validate that the project is NOT created
+		Validate that an error message is issued when attempting to create the duplicate project
+
+	Create a blank project with an invalid slug
+		Navigate to MainProjectsURL
+		Press "New Project" button
+		Press "Create blank project" option
+		Input Project name AltProjectName
+		Input Project URL GroupProjectURL
+		Input Project slug InvalidProjectSlug
+		Press "Create Project" button
+		Validate that the project is NOT created
+		Validate that an error message is issued when attempting to create the duplicate project
+
+
+	Create a blank project with empty/nameless fields
+		Navigate to MainProjectsURL
+		Press "New Project" button
+		Press "Create blank project" option
+		Input Project name Empty
+		Input Project URL GroupProjectURL
+		Input Project slug Empty
+		Press "Create Project" button
+		Validate that the project is NOT created
+		Validate that an error message is issued when attempting to create the duplicate project
